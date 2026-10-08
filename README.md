@@ -1,6 +1,6 @@
 # Mapa ekosystému: AI v dětských skupinách
 
-Interaktivní webová aplikace a sociotechnická vizualizace (STS optika) pro projekt integrace AI v dětských skupinách (děti 1–3 roky).
+Interaktivní webová aplikace a sociotechnická vizualizace (STS optika) pro projekt integrace AI v dětských skupinách (děti 2,5–5 let).
 
 **Autor:** Anna Klanicová  
 **Metodika:** 4 kategorie aktérů (vč. nelidských), soustředné zóny vlivu, toky moci, financí a dat.

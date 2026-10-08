@@ -27,20 +27,20 @@ const actorsData = {
 
   toddlers: {
     id: "toddlers",
-    title: "Batolata (1–3 roky)",
+    title: "Děti v dětské skupině (2,5–5 let)",
     category: "people",
     categoryBadge: "Lidé a skupiny",
     categoryColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
     zone: "1. Kruh (Přímý kontakt)",
     icon: "👶",
     isNonHuman: false,
-    stsType: "Zranitelný lidský aktér",
-    stsDescription: "Pasivní příjemci programu bez možnosti technologie přímo posuzovat nebo volit. Jejich tělesné a vývojové potřeby kladou přísné limity na výstupy AI.",
-    description: "Děti ve věku 1 až 3 roky procházejí prudkým rozvojem motoriky a řeči. Potřebují vysoce specifické, jednoduché senzorické a dotykové podněty. Běžné generativní modely pro ně často navrhují nevhodně složité hry určené pro předškoláky.",
-    friction: "Neschopnost vyjádřit digitální nesouhlas; riziko přestimulování nevhodným programem.",
-    aiOpportunity: "Generování mikropříběhů se jmény konkrétních dětí a personalizovaných rituálů pro adaptaci (usínání, loučení s rodiči).",
+    stsType: "Smíšená věková skupina",
+    stsDescription: "Pasivní příjemci programu s výraznými vývojovými rozdíly. Jejich věkové rozpětí (2,5 až 5 let) klade nároky na diferenciaci programu a bezpečnou stimulaci.",
+    description: "Smíšená věková skupina s obrovskými vývojovými rozdíly. Dvouapůlleté děti potřebují senzomotorické hry a jednoduchost, pětileté děti předškolní přípravu a jemnou motoriku. Pro pečující osoby je nejnáročnější vymýšlet diferencované aktivity tak, aby se zabavily obě věkové hladiny současně.",
+    friction: "Obtížná diferenciace programu pro mladší a starší děti v jedné skupině; riziko přehlcení mladších nebo nudy starších dětí.",
+    aiOpportunity: "AI asistent pro tvorbu 2 paralelních variant aktivity (např. verze pro 2,5–3 roky a rozšířená verze pro 4–5 let na stejné téma).",
     connectedFlows: [
-      { name: "Realizace denní péče a her", type: "data", dir: "in", from: "center" }
+      { name: "Realizace diferencovaného programu a péče", type: "data", dir: "in", from: "center" }
     ]
   },
 
