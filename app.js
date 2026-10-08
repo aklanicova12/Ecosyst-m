@@ -213,12 +213,43 @@ let currentFlowFilter = "all";
 let currentCategoryFilter = "all";
 let isFlowAnimationActive = true;
 let currentZoom = 1;
+let currentTheme = "light";
 
 // Initialize on DOM Load
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
   selectNode("center");
   initModals();
 });
+
+// Theme Handling (Light / Dark Mode)
+function initTheme() {
+  const savedTheme = localStorage.getItem("ecosystem_theme") || "light";
+  applyTheme(savedTheme);
+}
+
+function toggleTheme() {
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  applyTheme(newTheme);
+}
+
+function applyTheme(theme) {
+  currentTheme = theme;
+  localStorage.setItem("ecosystem_theme", theme);
+  const html = document.documentElement;
+  const themeIcon = document.getElementById("themeIcon");
+  const themeText = document.getElementById("themeText");
+
+  if (theme === "dark") {
+    html.classList.add("dark");
+    if (themeIcon) themeIcon.innerText = "☀️";
+    if (themeText) themeText.innerText = "Světlý režim";
+  } else {
+    html.classList.remove("dark");
+    if (themeIcon) themeIcon.innerText = "🌙";
+    if (themeText) themeText.innerText = "Tmavý režim";
+  }
+}
 
 // Select Node and populate inspector
 function selectNode(nodeId) {

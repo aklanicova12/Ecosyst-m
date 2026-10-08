@@ -1,19 +1,32 @@
-/* Custom styling for Ecosystem Map */
+/* Custom styling for Ecosystem Map (Light & Dark Theme Support) */
 
-/* Glassmorphism & Cards */
-.glass-card {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+/* Global Transitions */
+body, .glass-card, .btn-secondary, .flow-pill, .category-card, select {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Custom Buttons */
+/* Glassmorphism & Cards (Light Mode Default) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark Mode Glassmorphism */
+html.dark .glass-card {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Primary Button */
 .btn-primary {
   background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
   color: #ffffff;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
 }
 
 .btn-primary:hover {
@@ -22,21 +35,34 @@
   box-shadow: 0 6px 20px rgba(79, 70, 229, 0.45);
 }
 
+/* Secondary Button (Light Mode) */
 .btn-secondary {
-  background: rgba(30, 41, 59, 0.8);
-  border: 1px solid rgba(51, 65, 85, 0.8);
-  color: #e2e8f0;
-  transition: all 0.2s ease;
+  background: rgba(248, 250, 252, 0.9);
+  border: 1px solid #cbd5e1;
+  color: #334155;
 }
 
 .btn-secondary:hover {
-  background: rgba(51, 65, 85, 0.9);
-  border-color: rgba(99, 102, 241, 0.5);
-  color: #ffffff;
+  background: #ffffff;
+  border-color: #6366f1;
+  color: #1e293b;
   transform: translateY(-1px);
 }
 
-/* Flow Filter Pills */
+/* Secondary Button (Dark Mode) */
+html.dark .btn-secondary {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  color: #e2e8f0;
+}
+
+html.dark .btn-secondary:hover {
+  background: rgba(51, 65, 85, 0.9);
+  border-color: rgba(99, 102, 241, 0.5);
+  color: #ffffff;
+}
+
+/* Flow Filter Pills (Light Mode) */
 .flow-pill {
   display: inline-flex;
   align-items: center;
@@ -45,32 +71,56 @@
   border-radius: 0.75rem;
   font-size: 0.75rem;
   font-weight: 600;
-  border: 1px solid rgba(51, 65, 85, 0.6);
-  background: rgba(15, 23, 42, 0.6);
-  color: #94a3b8;
+  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.9);
+  color: #475569;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .flow-pill:hover {
-  border-color: rgba(99, 102, 241, 0.4);
-  color: #f8fafc;
+  border-color: #818cf8;
+  color: #1e293b;
   transform: translateY(-1px);
 }
 
 .flow-pill.active-pill {
-  background: rgba(99, 102, 241, 0.2);
-  border-color: #6366f1;
-  color: #ffffff;
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.35);
+  background: #eef2ff !important;
+  border-color: #6366f1 !important;
+  color: #4338ca !important;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.2);
 }
 
 .badge-count {
   font-size: 0.65rem;
-  background: rgba(30, 41, 59, 0.8);
-  color: #cbd5e1;
+  background: #f1f5f9;
+  color: #475569;
   padding: 0.1rem 0.45rem;
   border-radius: 9999px;
+}
+
+/* Flow Filter Pills (Dark Mode) */
+html.dark .flow-pill {
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  background: rgba(15, 23, 42, 0.6);
+  color: #94a3b8;
+}
+
+html.dark .flow-pill:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #f8fafc;
+}
+
+html.dark .flow-pill.active-pill {
+  background: rgba(99, 102, 241, 0.2) !important;
+  border-color: #6366f1 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.35);
+}
+
+html.dark .badge-count {
+  background: rgba(30, 41, 59, 0.8);
+  color: #cbd5e1;
 }
 
 /* Interactive SVG Nodes */
@@ -86,18 +136,48 @@
 
 .node-item.selected .node-ring {
   stroke-width: 4.5px !important;
+  stroke: #6366f1 !important;
+  filter: drop-shadow(0 0 16px rgba(99, 102, 241, 0.65));
+}
+
+html.dark .node-item.selected .node-ring {
   stroke: #a5b4fc !important;
   filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.8));
 }
 
 .node-item.dimmed {
-  opacity: 0.25;
-  filter: grayscale(80%);
+  opacity: 0.2;
+  filter: grayscale(85%);
 }
 
 .node-item.highlighted {
   opacity: 1 !important;
   filter: none !important;
+}
+
+/* Concentric SVG Zone Circles */
+.zone-circle {
+  transition: stroke 0.3s ease, fill 0.3s ease, fill-opacity 0.3s ease;
+}
+
+html:not(.dark) #zone2Circle {
+  fill: #f8fafc !important;
+  fill-opacity: 0.7 !important;
+  stroke: #cbd5e1 !important;
+}
+
+html:not(.dark) #zone1Circle {
+  fill: #f1f5f9 !important;
+  fill-opacity: 0.75 !important;
+  stroke: #94a3b8 !important;
+}
+
+html:not(.dark) .zone-text-2 {
+  fill: #64748b !important;
+}
+
+html:not(.dark) .zone-text-1 {
+  fill: #475569 !important;
 }
 
 /* Animated SVG Flow Lines */
@@ -150,12 +230,16 @@
 
 /* Category cards hover */
 .category-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 .category-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+}
+
+html.dark .category-card:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
 }
 
 /* Custom Scrollbars */
@@ -165,14 +249,26 @@
 }
 
 ::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.6);
+}
+
+html.dark ::-webkit-scrollbar-track {
   background: rgba(15, 23, 42, 0.6);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #cbd5e1;
   border-radius: 3px;
 }
 
+html.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
 ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
