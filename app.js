@@ -5,7 +5,7 @@ const actorsData = {
     title: "Pečující osoby a chůvy v DS",
     category: "people",
     categoryBadge: "Cílová skupina & Jádro",
-    categoryColor: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
+    categoryColor: "bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-500/30",
     zone: "Střed zájmu (Zóna 0)",
     icon: "👥",
     isNonHuman: false,
@@ -16,12 +16,14 @@ const actorsData = {
     aiOpportunity: "Rychlá zkratka pro diplomatickou formulaci e-mailů rodičům a generování věkově přiměřených senzorických her (do 3 let).",
     connectedFlows: [
       { name: "Pravidla & provozní pokyny", type: "power", dir: "in", from: "manager" },
-      { name: "Péče & senzorické hry", type: "data", dir: "out", to: "toddlers" },
-      { name: "Očekávání & emoce", type: "emotions", dir: "in", from: "parents" },
+      { name: "Realizace diferencovaného programu a péče", type: "data", dir: "out", to: "toddlers" },
+      { name: "Únava, pláč, separační úzkost a dynamika skupiny", type: "emotions", dir: "in", from: "toddlers" },
+      { name: "Očekávání & emoční nároky", type: "emotions", dir: "in", from: "parents" },
+      { name: "Zadání dotazu a promptů", type: "data", dir: "out", to: "aichat" },
       { name: "Generované texty & nápady", type: "data", dir: "in", from: "aichat" },
       { name: "Reporty & fotky", type: "data", dir: "out", to: "twigsee" },
-      { name: "Večerní hledání inspirace", type: "emotions", dir: "out", to: "pinterest" },
-      { name: "Tisk & mobilní obsluha", type: "data", dir: "out", to: "hardware" }
+      { name: "Večerní hledání inspirace a příprava", type: "emotions", dir: "out", to: "pinterest" },
+      { name: "Příprava k tisku & mobilní práce", type: "data", dir: "out", to: "hardware" }
     ]
   },
 
@@ -30,17 +32,19 @@ const actorsData = {
     title: "Děti v dětské skupině (2,5–5 let)",
     category: "people",
     categoryBadge: "Lidé a skupiny",
-    categoryColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+    categoryColor: "bg-amber-50 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-500/30",
     zone: "1. Kruh (Přímý kontakt)",
     icon: "👶",
     isNonHuman: false,
-    stsType: "Smíšená věková skupina",
-    stsDescription: "Pasivní příjemci programu s výraznými vývojovými rozdíly. Jejich věkové rozpětí (2,5 až 5 let) klade nároky na diferenciaci programu a bezpečnou stimulaci.",
-    description: "Smíšená věková skupina s obrovskými vývojovými rozdíly. Dvouapůlleté děti potřebují senzomotorické hry a jednoduchost, pětileté děti předškolní přípravu a jemnou motoriku. Pro pečující osoby je nejnáročnější vymýšlet diferencované aktivity tak, aby se zabavily obě věkové hladiny současně.",
-    friction: "Obtížná diferenciace programu pro mladší a starší děti v jedné skupině; riziko přehlcení mladších nebo nudy starších dětí.",
+    stsType: "Aktivní smíšená skupina",
+    stsDescription: "Aktivní aktéři s výraznými vývojovými rozdíly. Svými bezprostředními tělesnými a emočními reakcemi (únava, pláč, nadšení) zpětně formují chování personálu i realizaci programu.",
+    description: "Smíšená věková skupina s velkými vývojovými rozdíly (2,5 až 5 let). Děti nejsou pouhými pasivními příjemci – jejich okamžitá reakce, únava, separační úzkost či zaujetí aktivitou bezprostředně formují chování personálu. Pro chůvy je zásadní diferenciace programu i přísun hmatatelných materiálů.",
+    friction: "Obtížná diferenciace programu pro mladší a starší děti v jedné skupině; riziko přehlcení mladších nebo nudy starších dětí; nepředvídatelná únava a emoční propady.",
     aiOpportunity: "AI asistent pro tvorbu 2 paralelních variant aktivity (např. verze pro 2,5–3 roky a rozšířená verze pro 4–5 let na stejné téma).",
     connectedFlows: [
-      { name: "Realizace diferencovaného programu a péče", type: "data", dir: "in", from: "center" }
+      { name: "Realizace diferencovaného programu a péče", type: "data", dir: "in", from: "center" },
+      { name: "Vytištěné materiály, omalovánky a piktogramy", type: "data", dir: "in", from: "hardware" },
+      { name: "Únava, pláč, separační úzkost a dynamika skupiny", type: "emotions", dir: "out", to: "center" }
     ]
   },
 
@@ -49,7 +53,7 @@ const actorsData = {
     title: "Rodiče malých dětí",
     category: "people",
     categoryBadge: "Lidé a skupiny",
-    categoryColor: "bg-sky-500/20 text-sky-300 border-sky-500/30",
+    categoryColor: "bg-sky-50 dark:bg-sky-500/20 text-sky-800 dark:text-sky-300 border-sky-200 dark:border-sky-500/30",
     zone: "1. Kruh (Přímý kontakt)",
     icon: "👨‍👩‍👧",
     isNonHuman: false,
@@ -70,7 +74,7 @@ const actorsData = {
     title: "Vedoucí / Provozovatel DS",
     category: "institutions",
     categoryBadge: "Instituce a autority",
-    categoryColor: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+    categoryColor: "bg-rose-50 dark:bg-rose-500/20 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-500/30",
     zone: "1. Kruh (Provozní autorita)",
     icon: "🏢",
     isNonHuman: false,
@@ -93,18 +97,18 @@ const actorsData = {
     title: "AI Modely (ChatGPT / Claude)",
     category: "tech",
     categoryBadge: "Technologie a systémy",
-    categoryColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+    categoryColor: "bg-purple-50 dark:bg-purple-500/20 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-500/30",
     zone: "1. Kruh (Technologický asistent)",
     icon: "🤖",
     isNonHuman: true,
     stsType: "⚡ Nelidský generativní aktér",
-    stsDescription: "Algoritmický systém transformující text na základě pravděpodobnostních modelů. Nemá reálné vědomí o tělesnosti batolat.",
-    description: "Trénovaný na masivních webových datech. Bez specializovaného vedení (system promptu) trpí tzv. 'předškolkovým zkreslením' – navrhuje aktivity vyžadující stříhání nůžkami nebo složitá pravidla, která batolata nezvládnou.",
+    stsDescription: "Algoritmický systém transformující text na základě pravděpodobnostních modelů. Nemá reálné vědomí o tělesnosti batolat a vyžaduje lidské vedení.",
+    description: "Trénovaný na masivních webových datech. Bez specializovaného vedení (system promptu) trpí tzv. 'předškolkovým zkreslením' – navrhuje aktivity vyžadující stříhání nůžkami nebo složitá pravidla, která batolata nezvládnou. Chůva do něj vkládá prompt a kontext a přebírá generované výstupy.",
     friction: "Halucinace, neznalost české legislativy dětských skupin, nutnost psát dobré prompty.",
     aiOpportunity: "Vyladěné asistenty pro batolecí věk (prompt šablony: senzorické koše, básničky s pohybem, diplomatické odpovědi).",
     connectedFlows: [
-      { name: "Čerpání inspirace z webu", type: "data", dir: "in", from: "pinterest" },
-      { name: "Generované scénáře a texty", type: "data", dir: "out", to: "center" }
+      { name: "Zadání dotazu a promptů", type: "data", dir: "in", from: "center" },
+      { name: "Generované texty & nápady", type: "data", dir: "out", to: "center" }
     ]
   },
 
@@ -113,17 +117,18 @@ const actorsData = {
     title: "Hardware (Mobil, Tiskárna)",
     category: "tech",
     categoryBadge: "Technologie a systémy",
-    categoryColor: "bg-slate-500/20 text-slate-300 border-slate-500/30",
+    categoryColor: "bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-700",
     zone: "1. Kruh (Materiální zázemí)",
     icon: "🖨️",
     isNonHuman: true,
     stsType: "⚡ Nelidský materiální aktér",
-    stsDescription: "Fyzické technologie tvořící kritické hrdlo. Určují, jaké digitální nápady lze vůbec přenést do hmatatelné reality.",
-    description: "V dětských skupinách chůvy nemají vlastní stolní počítače. Vše dělají ve spěchu na osobních chytrých telefonech a materiály tisknou na sdílené tiskárně na chodbě (které často dochází toner nebo papír).",
-    friction: "Malé displeje mobilů, absence služebních notebooků, nespolehlivý tisk.",
+    stsDescription: "Fyzické technologie tvořící materiální úzké hrdlo. Tiskárna zásobuje děti hmatatelnými pomůckami a osobní mobil slouží k nahrávání reportů do Twigsee; určují propustnost digitálních nápadů do reality.",
+    description: "V dětských skupinách chůvy nemají vlastní stolní počítače. Vše dělají ve spěchu na osobních chytrých telefonech (nahrávání fotek a zpráv do Twigsee) a materiály tisknou na sdílené tiskárně na chodbě. Právě tiskárna zásobuje děti fyzickými pomůckami, omalovánkami, piktogramy denního režimu a senzorickými kartami.",
+    friction: "Malé displeje mobilů, absence služebních notebooků, nespolehlivý tisk, docházející toner nebo papír.",
     aiOpportunity: "Výstupy optimalizované pro okamžitý tisk v černobílé verzi a responzivní mobilní rozhraní.",
     connectedFlows: [
-      { name: "Příprava k tisku & mobilní práce", type: "data", dir: "in", from: "center" }
+      { name: "Příprava k tisku & mobilní práce", type: "data", dir: "in", from: "center" },
+      { name: "Vytištěné materiály, omalovánky a piktogramy", type: "data", dir: "out", to: "toddlers" }
     ]
   },
 
@@ -132,7 +137,7 @@ const actorsData = {
     title: "MPSV (Ministerstvo práce)",
     category: "institutions",
     categoryBadge: "Instituce a autority",
-    categoryColor: "bg-slate-500/20 text-slate-300 border-slate-500/30",
+    categoryColor: "bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-700",
     zone: "2. Kruh (Zákonný rámec)",
     icon: "⚖️",
     isNonHuman: false,
@@ -152,7 +157,7 @@ const actorsData = {
     title: "Aplikace (Twigsee / Školka v mobilu)",
     category: "tech",
     categoryBadge: "Technologie a systémy",
-    categoryColor: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
+    categoryColor: "bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-500/30",
     zone: "2. Kruh (Komunikační kanál)",
     icon: "📱",
     isNonHuman: true,
@@ -170,20 +175,19 @@ const actorsData = {
   pinterest: {
     id: "pinterest",
     title: "Pinterest & Online sítě",
-    category: "resources",
-    categoryBadge: "Zdroje a inspirace",
-    categoryColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+    category: "tech",
+    categoryBadge: "Algoritmická platforma",
+    categoryColor: "bg-amber-50 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-500/30",
     zone: "2. Kruh (Algoritmická inspirace)",
     icon: "📌",
     isNonHuman: true,
     stsType: "⚡ Nelidský algoritmický kurátor",
-    stsDescription: "Doporučovací algoritmus, který podsouvá vizuálně dokonalé, avšak časově náročné a nerealistické nápady.",
-    description: "Hlavní zdroj inspirace pro tvoření a hry v DS. Nutí chůvy trávit hodiny neplaceného večerního scrollování a vytváří nerealistická očekávání.",
-    friction: "Časová ztráta (scrolling trap), nápady často nevhodné pro děti do 3 let.",
+    stsDescription: "Doporučovací algoritmus a sociální platforma podsouvající vizuálně dokonalé, avšak časově náročné nápady. Chůva z něj čerpá inspiraci a přenáší ji dál do praxe.",
+    description: "Hlavní zdroj inspirace pro tvoření a hry v DS. Nutí chůvy trávit hodiny neplaceného večerního scrollování a vytváří nerealistická očekávání. Chůva nápady přebírá a zadává je do AI k adaptaci pro batolata.",
+    friction: "Časová ztráta (scrolling trap), nápady často nevhodné pro děti do 3 let bez adaptace.",
     aiOpportunity: "Okamžitá filtrace a konverze obrázkového nápadu na jednoduchý 3-krokový plán pro batolata.",
     connectedFlows: [
-      { name: "Večerní neplacená příprava", type: "emotions", dir: "in", from: "center" },
-      { name: "Trénovací data a trendy", type: "data", dir: "out", to: "aichat" }
+      { name: "Večerní neplacená příprava a hledání inspirace", type: "emotions", dir: "in", from: "center" }
     ]
   },
 
@@ -192,7 +196,7 @@ const actorsData = {
     title: "Hygiena a kontrolní orgány",
     category: "institutions",
     categoryBadge: "Instituce a dohled",
-    categoryColor: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+    categoryColor: "bg-rose-50 dark:bg-rose-500/20 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-500/30",
     zone: "2. Kruh (Bezpečnostní dohled)",
     icon: "🛡️",
     isNonHuman: false,
@@ -218,9 +222,18 @@ let currentTheme = "light";
 // Initialize on DOM Load
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
+  initFlowBadgeCount();
   selectNode("center");
   initModals();
 });
+
+function initFlowBadgeCount() {
+  const badge = document.querySelector(".badge-count");
+  if (badge) {
+    const totalLines = document.querySelectorAll(".flow-line").length;
+    badge.innerText = totalLines;
+  }
+}
 
 // Theme Handling (Light / Dark Mode)
 function initTheme() {
@@ -292,11 +305,11 @@ function selectNode(nodeId) {
     const pill = document.createElement("span");
     const dirIcon = flow.dir === "in" ? "↓ Vstup" : "↑ Výstup";
     
-    let colorClass = "bg-slate-800 text-slate-300 border-slate-700";
-    if (flow.type === "power") colorClass = "bg-rose-950/70 text-rose-300 border-rose-800/60";
-    if (flow.type === "money") colorClass = "bg-emerald-950/70 text-emerald-300 border-emerald-800/60";
-    if (flow.type === "data") colorClass = "bg-sky-950/70 text-sky-300 border-sky-800/60";
-    if (flow.type === "emotions") colorClass = "bg-purple-950/70 text-purple-300 border-purple-800/60";
+    let colorClass = "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700";
+    if (flow.type === "power") colorClass = "bg-rose-50 dark:bg-rose-950/70 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800/60";
+    if (flow.type === "money") colorClass = "bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60";
+    if (flow.type === "data") colorClass = "bg-sky-50 dark:bg-sky-950/70 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-800/60";
+    if (flow.type === "emotions") colorClass = "bg-purple-50 dark:bg-purple-950/70 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800/60";
 
     pill.className = `px-2.5 py-1 rounded-lg text-[11px] font-medium border flex items-center gap-1.5 ${colorClass}`;
     pill.innerHTML = `<strong>${dirIcon}:</strong> ${flow.name}`;
@@ -310,7 +323,6 @@ function selectNode(nodeId) {
 // Highlight connected lines and dimmed other nodes
 function highlightConnectionsForNode(nodeId) {
   const lines = document.querySelectorAll(".flow-line");
-  const nodes = document.querySelectorAll(".node-item");
 
   // If in a general flow filter, respect it unless explicitly clicking
   lines.forEach(line => {
@@ -320,12 +332,23 @@ function highlightConnectionsForNode(nodeId) {
     if (source === nodeId || target === nodeId) {
       line.classList.add("highlighted");
       line.classList.remove("dimmed");
+      line.style.strokeOpacity = "";
+      line.style.strokeWidth = "";
     } else {
       line.classList.remove("highlighted");
       if (currentFlowFilter === "all") {
         line.classList.remove("dimmed");
+        line.style.strokeOpacity = "";
+        line.style.strokeWidth = "";
       } else {
-        line.classList.add("dimmed");
+        const flowType = line.getAttribute("data-flow-type");
+        if (flowType === currentFlowFilter) {
+          line.classList.remove("dimmed");
+          line.style.strokeOpacity = "";
+          line.style.strokeWidth = "";
+        } else {
+          line.classList.add("dimmed");
+        }
       }
     }
   });
@@ -333,6 +356,24 @@ function highlightConnectionsForNode(nodeId) {
 
 function highlightConnectedNodes() {
   highlightConnectionsForNode(currentSelectedNode);
+  const connectedNodeIds = new Set([currentSelectedNode]);
+  const nodeData = actorsData[currentSelectedNode];
+  if (nodeData && nodeData.connectedFlows) {
+    nodeData.connectedFlows.forEach(f => {
+      if (f.from) connectedNodeIds.add(f.from);
+      if (f.to) connectedNodeIds.add(f.to);
+    });
+  }
+  document.querySelectorAll(".node-item").forEach(node => {
+    const id = node.id.replace("node-", "");
+    if (connectedNodeIds.has(id)) {
+      node.classList.remove("dimmed");
+      node.classList.add("highlighted");
+    } else {
+      node.classList.add("dimmed");
+      node.classList.remove("highlighted");
+    }
+  });
 }
 
 // Set Flow filter (All, Power, Money, Data, Emotions)
@@ -350,29 +391,29 @@ function setFlowFilter(type) {
 
   // Badge notification
   const badge = document.getElementById("activeFilterBadge");
-  badge.classList.remove("hidden");
-  
-  const names = {
-    all: "Všechny toky",
-    power: "Moc a pravidla (Červená)",
-    money: "Finance a dotace (Zelená)",
-    data: "Data a obsah (Modrá)",
-    emotions: "Emoce a neviditelná práce (Fialová)"
-  };
-  badge.innerText = `Filtr: ${names[type] || type}`;
+  if (badge) {
+    badge.classList.remove("hidden");
+    const names = {
+      all: "Všechny toky",
+      power: "Moc a pravidla (Červená)",
+      money: "Finance a dotace (Zelená)",
+      data: "Data a obsah (Modrá)",
+      emotions: "Emoce a neviditelná práce (Fialová)"
+    };
+    badge.innerText = `Filtr: ${names[type] || type}`;
+  }
 
   // Filter SVG Lines
   const lines = document.querySelectorAll(".flow-line");
   lines.forEach(line => {
     const flowType = line.getAttribute("data-flow-type");
+    line.classList.remove("highlighted");
+    line.style.strokeOpacity = "";
+    line.style.strokeWidth = "";
     if (type === "all" || flowType === type) {
       line.classList.remove("dimmed");
-      line.style.strokeOpacity = "1";
-      line.style.strokeWidth = flowType === "power" ? "2.8" : "2.4";
     } else {
       line.classList.add("dimmed");
-      line.style.strokeOpacity = "0.08";
-      line.style.strokeWidth = "1";
     }
   });
 }
@@ -442,10 +483,10 @@ function applyScenario(scenarioKey) {
     setFlowFilter("data");
     highlightSpecificNodes(["center", "aichat", "twigsee", "parents"]);
   } else if (scenarioKey === "scenario2") {
-    // Senzorická hra: Pinterest + AI + Chůva + Batolata + Hardware
-    selectNode("pinterest");
+    // Senzorická hra: Pinterest + Chůva + AI + Hardware + Děti
+    selectNode("center");
     setFlowFilter("data");
-    highlightSpecificNodes(["pinterest", "aichat", "center", "hardware", "toddlers"]);
+    highlightSpecificNodes(["pinterest", "center", "aichat", "hardware", "toddlers"]);
   } else if (scenarioKey === "scenario3") {
     // MPSV kontrola a GDPR: MPSV + Vedoucí + Chůva + Twigsee + Hygiena
     selectNode("mpsv");
@@ -465,6 +506,20 @@ function highlightSpecificNodes(nodeIds) {
       node.classList.remove("highlighted");
     }
   });
+
+  document.querySelectorAll(".flow-line").forEach(line => {
+    const source = line.getAttribute("data-source");
+    const target = line.getAttribute("data-target");
+    if (nodeIds.includes(source) && nodeIds.includes(target)) {
+      line.classList.add("highlighted");
+      line.classList.remove("dimmed");
+      line.style.strokeOpacity = "1";
+    } else {
+      line.classList.remove("highlighted");
+      line.classList.add("dimmed");
+      line.style.strokeOpacity = "0.08";
+    }
+  });
 }
 
 // Zoom / Scale Controls
@@ -480,7 +535,8 @@ function resetZoom() {
   applyZoom();
   setFlowFilter("all");
   filterCategory("all");
-  document.getElementById("categorySelector").value = "all";
+  const catSelector = document.getElementById("categorySelector");
+  if (catSelector) catSelector.value = "all";
   selectNode("center");
 }
 

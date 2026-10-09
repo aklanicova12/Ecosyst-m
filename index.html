@@ -106,7 +106,7 @@
         <span class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 px-2 tracking-wider">Filtrovat toky:</span>
         <button onclick="setFlowFilter('all')" data-flow="all" class="flow-pill active-pill">
           <span>Všechny toky</span>
-          <span class="badge-count">10</span>
+          <span class="badge-count">15</span>
         </button>
         <button onclick="setFlowFilter('power')" data-flow="power" class="flow-pill text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-500/30 hover:bg-rose-50 dark:hover:bg-rose-500/10">
           <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block shadow-[0_0_8px_#f43f5e]"></span>
@@ -130,12 +130,11 @@
       <div class="xl:col-span-4 flex items-center justify-between gap-2 p-2 bg-white/90 dark:bg-slate-900/90 glass-card rounded-2xl border border-slate-200 dark:border-slate-800">
         <span class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 px-2 tracking-wider">Kategorie:</span>
         <select id="categorySelector" onchange="filterCategory(this.value)" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs rounded-xl px-3 py-1.5 focus:outline-none focus:border-indigo-500 flex-1">
-          <option value="all">Všechny 4 kategorie aktérů</option>
-          <option value="people">👥 1. Lidé a skupiny</option>
-          <option value="institutions">🏛️ 2. Instituce a autority</option>
-          <option value="tech">🤖 3. Technologie a systémy</option>
-          <option value="resources">📦 4. Zdroje (Peníze, data, čas)</option>
-          <option value="non-human">⚡ Pouze nelidští aktéři (STS)</option>
+          <option value="all">Všichni aktéři ekosystému</option>
+          <option value="people">👥 1. Lidé a skupiny (3)</option>
+          <option value="institutions">🏛️ 2. Instituce a autority (3)</option>
+          <option value="tech">🤖 3. Technologie a platformy (4)</option>
+          <option value="non-human">⚡ Pouze nelidští aktéři (STS - 4)</option>
         </select>
         <button id="toggleAnimBtn" onclick="toggleFlowAnimation()" class="p-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-300 dark:border-slate-700" title="Přepnout animaci toků">
           <svg id="animIcon" class="w-4 h-4 text-emerald-500 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -297,14 +296,17 @@
               <path id="flow-parents-money" class="flow-line flow-money animated-flow" d="M 270 590 C 350 630, 570 580, 640 350" stroke="#10b981" stroke-width="2.2" stroke-dasharray="6,4" marker-end="url(#arrow-money)" data-flow-type="money" data-source="parents" data-target="manager" />
 
               <!-- 3. DATA A OBSAH (Data & Content - Sky Blue) -->
-              <!-- Pinterest/Web -> AI Modely (Trénovací data & nápady) -->
-              <path id="flow-pinterest-ai" class="flow-line flow-data animated-flow" d="M 215 285 C 250 280, 270 290, 310 300" stroke="#0284c7" stroke-width="2.2" stroke-dasharray="5,4" marker-end="url(#arrow-data)" data-flow-type="data" data-source="pinterest" data-target="aichat" />
+              <!-- Pečující -> AI Modely (Zadání dotazu a promptů) -->
+              <path id="flow-center-ai" class="flow-line flow-data animated-flow" d="M 440 420 C 405 380, 375 350, 350 335" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="5,4" marker-end="url(#arrow-data)" data-flow-type="data" data-source="center" data-target="aichat" />
 
               <!-- AI Modely -> Pečující osoby (Generované texty, pohádky, hry) -->
               <path id="flow-ai-center" class="flow-line flow-data animated-flow" d="M 360 340 C 390 380, 420 410, 435 435" stroke="#0284c7" stroke-width="3" stroke-dasharray="5,4" marker-end="url(#arrow-data)" data-flow-type="data" data-source="aichat" data-target="center" />
 
               <!-- Pečující -> Hardware (Tisk přípravy / vkládání do mobilu) -->
               <path id="flow-center-hardware" class="flow-line flow-data animated-flow" d="M 525 520 C 560 550, 610 570, 660 580" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="4,4" marker-end="url(#arrow-data)" data-flow-type="data" data-source="center" data-target="hardware" />
+
+              <!-- Hardware -> Děti v DS (Vytištěné materiály, omalovánky, piktogramy) -->
+              <path id="flow-hardware-toddlers" class="flow-line flow-data animated-flow" d="M 655 615 C 620 660, 570 690, 525 710" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="4,4" marker-end="url(#arrow-data)" data-flow-type="data" data-source="hardware" data-target="toddlers" />
 
               <!-- Pečující -> Twigsee (Reporty o dětech, fotky, jídelníček) -->
               <path id="flow-center-twigsee" class="flow-line flow-data animated-flow" d="M 545 470 C 630 450, 720 440, 760 440" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="5,4" marker-end="url(#arrow-data)" data-flow-type="data" data-source="center" data-target="twigsee" />
@@ -313,7 +315,7 @@
               <path id="flow-twigsee-parents" class="flow-line flow-data animated-flow" d="M 760 480 C 650 630, 420 680, 290 600" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-data)" data-flow-type="data" data-source="twigsee" data-target="parents" />
 
               <!-- Pečující -> Děti v DS (Realizace diferencovaných aktivit a péče) -->
-              <path id="flow-center-toddlers" class="flow-line flow-data animated-flow" d="M 480 555 C 480 580, 480 620, 480 670" stroke="#d97706" stroke-width="3.5" marker-end="url(#arrow-data)" data-flow-type="data" data-source="center" data-target="toddlers" />
+              <path id="flow-center-toddlers" class="flow-line flow-data animated-flow" d="M 468 555 C 455 590, 455 640, 468 675" stroke="#0284c7" stroke-width="3" marker-end="url(#arrow-data)" data-flow-type="data" data-source="center" data-target="toddlers" />
 
               <!-- 4. EMOCE, ČAS A NEVIDITELNÁ PRÁCE (Violet/Purple) -->
               <!-- Rodiče -> Pečující (Očekávání, obavy, tlak na individuální přístup) -->
@@ -321,6 +323,9 @@
               
               <!-- Pečující -> Pinterest (Večerní neplacená příprava a hledání inspirace) -->
               <path id="flow-center-pinterest" class="flow-line flow-emotions animated-flow" d="M 425 450 C 320 420, 240 360, 190 310" stroke="#9333ea" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrow-emotions)" data-flow-type="emotions" data-source="center" data-target="pinterest" />
+
+              <!-- Děti v DS -> Pečující (Únava, pláč, separační úzkost a dynamika skupiny) -->
+              <path id="flow-toddlers-center" class="flow-line flow-emotions animated-flow" d="M 492 680 C 505 640, 505 595, 492 560" stroke="#9333ea" stroke-width="2.5" stroke-dasharray="3,3" marker-end="url(#arrow-emotions)" data-flow-type="emotions" data-source="toddlers" data-target="center" />
 
             </g>
 
@@ -351,7 +356,7 @@
               <text x="480" y="730" text-anchor="middle" class="fill-slate-950 font-heading font-extrabold text-[13px]">Děti v DS</text>
               <text x="480" y="746" text-anchor="middle" class="fill-amber-950 font-bold text-[10px]">(2,5–5 let)</text>
               <rect x="420" y="760" width="120" height="16" rx="8" fill="#78350f" fill-opacity="0.9"/>
-              <text x="480" y="771" text-anchor="middle" class="fill-amber-200 text-[8.5px] font-semibold">Příjemci péče</text>
+              <text x="480" y="771" text-anchor="middle" class="fill-amber-200 text-[8.5px] font-semibold">Aktivní aktéři</text>
             </g>
 
             <!-- Rodiče dětí -->
@@ -588,7 +593,7 @@
             <li class="flex items-start gap-2 cursor-pointer hover:text-indigo-600 dark:hover:text-white" onclick="selectNode('toddlers')">
               <span class="text-indigo-500 font-bold">•</span>
               <div>
-                <strong class="text-slate-900 dark:text-slate-100">Děti v dětské skupině (2,5–5 let):</strong> Smíšená věková skupina s obrovskými vývojovými rozdíly a potřebou diferenciace aktivit.
+                <strong class="text-slate-900 dark:text-slate-100">Děti v dětské skupině (2,5–5 let):</strong> Smíšená skupina s velkými vývojovými rozdíly; svými reakcemi a únavou aktivně zpětně formují chování personálu.
               </div>
             </li>
             <li class="flex items-start gap-2 cursor-pointer hover:text-indigo-600 dark:hover:text-white" onclick="selectNode('parents')">
@@ -636,25 +641,31 @@
             <span class="font-heading font-bold text-sm text-purple-700 dark:text-purple-300 flex items-center gap-1.5">
               🤖 3. Technologie & systémy
             </span>
-            <span class="text-[10px] bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300 px-2 py-0.5 rounded-full font-mono border border-purple-200 dark:border-transparent">3 aktéři</span>
+            <span class="text-[10px] bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300 px-2 py-0.5 rounded-full font-mono border border-purple-200 dark:border-transparent">4 aktéři</span>
           </div>
           <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300">
             <li class="flex items-start gap-2 cursor-pointer hover:text-purple-600 dark:hover:text-white" onclick="selectNode('aichat')">
               <span class="text-purple-500 font-bold">•</span>
               <div>
-                <strong class="text-slate-900 dark:text-slate-100">AI Modely (ChatGPT/Claude):</strong> Generátory textů pro diferencované hry a empatické e-maily.
+                <strong class="text-slate-900 dark:text-slate-100">AI Modely (ChatGPT/Claude):</strong> Generátory textů pro diferencované hry a empatické e-maily z promptů chůvy.
               </div>
             </li>
             <li class="flex items-start gap-2 cursor-pointer hover:text-purple-600 dark:hover:text-white" onclick="selectNode('twigsee')">
               <span class="text-indigo-500 font-bold">•</span>
               <div>
-                <strong class="text-slate-900 dark:text-slate-100">Twigsee / Školkové appky:</strong> Standardizují a strukturují komunikaci s rodinami.
+                <strong class="text-slate-900 dark:text-slate-100">Twigsee / Školkové appky:</strong> Standardizují a strukturují komunikaci a reporty pro rodiny.
               </div>
             </li>
             <li class="flex items-start gap-2 cursor-pointer hover:text-purple-600 dark:hover:text-white" onclick="selectNode('hardware')">
               <span class="text-slate-500 font-bold">•</span>
               <div>
-                <strong class="text-slate-900 dark:text-slate-100">Osobní telefony & tiskárna:</strong> Reálné materiální úzké hrdlo provozu dětské skupiny.
+                <strong class="text-slate-900 dark:text-slate-100">Osobní telefony & tiskárna:</strong> Materiální úzké hrdlo; tiskárna zásobuje děti hmatatelnými pomůckami a mobil slouží k nahrávání do Twigsee.
+              </div>
+            </li>
+            <li class="flex items-start gap-2 cursor-pointer hover:text-purple-600 dark:hover:text-white" onclick="selectNode('pinterest')">
+              <span class="text-amber-500 font-bold">•</span>
+              <div>
+                <strong class="text-slate-900 dark:text-slate-100">Pinterest & sítě:</strong> Algoritmická platforma vizuální inspirace podněcující večerní přípravu.
               </div>
             </li>
           </ul>
@@ -678,19 +689,19 @@
             <li class="flex items-start gap-2">
               <span class="text-sky-500 font-bold">•</span>
               <div>
-                <strong class="text-slate-900 dark:text-slate-100">Data a citlivé údaje:</strong> Fotografie dětí, záznamy o docházce a alergiích (GDPR).
+                <strong class="text-slate-900 dark:text-slate-100">Data a citlivé údaje:</strong> Fotografie dětí, záznamy docházky, promptování AI modelů.
               </div>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-500 font-bold">•</span>
               <div>
-                <strong class="text-slate-900 dark:text-slate-100">Obsah & inspirace:</strong> Plány, básničky a diferencované šablony z Pinterestu / AI.
+                <strong class="text-slate-900 dark:text-slate-100">Obsah & inspirace:</strong> Diferencované materiály z AI a tiskárny, večerní nápady z Pinterestu.
               </div>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-purple-500 font-bold">•</span>
               <div>
-                <strong class="text-slate-900 dark:text-slate-100">Čas a mentální kapacita:</strong> Neplacená večerní příprava a emocionální investice chův.
+                <strong class="text-slate-900 dark:text-slate-100">Emoce a neviditelná práce:</strong> Únava a separační reakce dětí, večerní neplacená příprava a nároky rodičů.
               </div>
             </li>
           </ul>
@@ -785,7 +796,7 @@
             <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-500/30">Scénář 2</span>
             <h4 class="font-heading font-bold text-slate-900 dark:text-white text-sm mt-2">Diferencovaná hra na podzim (2,5–5 let)</h4>
             <p class="text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-              Chůva hledá na Pinterestu aktivitu s kaštany. AI navrhne dvě paralelní varianty: senzorické třídění pro 2,5leté a počítání s jemnou motorikou pro 5leté předškoláky.
+              Chůva čerpá inspiraci na Pinterestu a zadá prompt do AI. Ta navrhne 2 varianty (senzorické třídění pro 2,5leté a počítání pro 5leté). Šablony vytiskne na sdílené tiskárně a realizuje je s dětmi.
             </p>
           </div>
           <button onclick="applyScenario('scenario2')" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 text-[11px] font-bold text-left flex items-center gap-1">

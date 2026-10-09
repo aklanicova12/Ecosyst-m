@@ -208,6 +208,22 @@ html:not(.dark) .zone-text-1 {
   animation: flowDash 1.8s linear infinite;
 }
 
+.flow-power {
+  color: #f43f5e;
+}
+
+.flow-money {
+  color: #10b981;
+}
+
+.flow-data {
+  color: #0284c7;
+}
+
+.flow-emotions {
+  color: #9333ea;
+}
+
 .flow-power.animated-flow {
   stroke-dasharray: 10, 6;
   animation-duration: 1.4s;
