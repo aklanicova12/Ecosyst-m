@@ -134,6 +134,11 @@ html.dark .badge-count {
   transform-origin: center;
 }
 
+.node-item.selected {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
 .node-item.selected .node-ring {
   stroke-width: 4.5px !important;
   stroke: #6366f1 !important;

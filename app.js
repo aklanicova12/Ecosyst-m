@@ -223,7 +223,7 @@ let currentTheme = "light";
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initFlowBadgeCount();
-  selectNode("center");
+  selectNode("center", false);
   initModals();
 });
 
@@ -265,13 +265,13 @@ function applyTheme(theme) {
 }
 
 // Select Node and populate inspector
-function selectNode(nodeId) {
+function selectNode(nodeId, dimOthers = true) {
   const data = actorsData[nodeId];
   if (!data) return;
 
   currentSelectedNode = nodeId;
 
-  // Update node visual state in SVG
+  // 1. Update node visual state in SVG: remove .selected from all, add to selected
   document.querySelectorAll(".node-item").forEach(el => {
     el.classList.remove("selected");
   });
@@ -316,15 +316,50 @@ function selectNode(nodeId) {
     flowsListEl.appendChild(pill);
   });
 
-  // Highlight connections
-  highlightConnectionsForNode(nodeId);
+  // 2. Automatically highlight connected nodes & lines, gently dim unrelated
+  if (dimOthers) {
+    highlightNodesForNode(nodeId);
+    highlightConnectionsForNode(nodeId);
+  } else {
+    document.querySelectorAll(".node-item").forEach(node => {
+      node.classList.remove("dimmed");
+      node.classList.remove("highlighted");
+    });
+    document.querySelectorAll(".flow-line").forEach(line => {
+      line.classList.remove("dimmed");
+      line.classList.remove("highlighted");
+    });
+    highlightConnectionsForNode(nodeId);
+  }
 }
 
-// Highlight connected lines and dimmed other nodes
+// Highlight connected nodes and dim others
+function highlightNodesForNode(nodeId) {
+  const connectedNodeIds = new Set([nodeId]);
+  const nodeData = actorsData[nodeId];
+  if (nodeData && nodeData.connectedFlows) {
+    nodeData.connectedFlows.forEach(f => {
+      if (f.from) connectedNodeIds.add(f.from);
+      if (f.to) connectedNodeIds.add(f.to);
+    });
+  }
+
+  document.querySelectorAll(".node-item").forEach(node => {
+    const id = node.id.replace("node-", "");
+    if (connectedNodeIds.has(id)) {
+      node.classList.remove("dimmed");
+      node.classList.add("highlighted");
+    } else {
+      node.classList.remove("highlighted");
+      node.classList.add("dimmed");
+    }
+  });
+}
+
+// Highlight connected lines and dim other lines
 function highlightConnectionsForNode(nodeId) {
   const lines = document.querySelectorAll(".flow-line");
 
-  // If in a general flow filter, respect it unless explicitly clicking
   lines.forEach(line => {
     const source = line.getAttribute("data-source");
     const target = line.getAttribute("data-target");
@@ -337,7 +372,7 @@ function highlightConnectionsForNode(nodeId) {
     } else {
       line.classList.remove("highlighted");
       if (currentFlowFilter === "all") {
-        line.classList.remove("dimmed");
+        line.classList.add("dimmed");
         line.style.strokeOpacity = "";
         line.style.strokeWidth = "";
       } else {
@@ -355,25 +390,8 @@ function highlightConnectionsForNode(nodeId) {
 }
 
 function highlightConnectedNodes() {
+  highlightNodesForNode(currentSelectedNode);
   highlightConnectionsForNode(currentSelectedNode);
-  const connectedNodeIds = new Set([currentSelectedNode]);
-  const nodeData = actorsData[currentSelectedNode];
-  if (nodeData && nodeData.connectedFlows) {
-    nodeData.connectedFlows.forEach(f => {
-      if (f.from) connectedNodeIds.add(f.from);
-      if (f.to) connectedNodeIds.add(f.to);
-    });
-  }
-  document.querySelectorAll(".node-item").forEach(node => {
-    const id = node.id.replace("node-", "");
-    if (connectedNodeIds.has(id)) {
-      node.classList.remove("dimmed");
-      node.classList.add("highlighted");
-    } else {
-      node.classList.add("dimmed");
-      node.classList.remove("highlighted");
-    }
-  });
 }
 
 // Set Flow filter (All, Power, Money, Data, Emotions)
@@ -430,6 +448,7 @@ function filterCategory(cat) {
 
     if (cat === "all") {
       node.classList.remove("dimmed");
+      node.classList.remove("highlighted");
     } else if (cat === "non-human") {
       if (data.isNonHuman) {
         node.classList.remove("dimmed");
@@ -537,7 +556,7 @@ function resetZoom() {
   filterCategory("all");
   const catSelector = document.getElementById("categorySelector");
   if (catSelector) catSelector.value = "all";
-  selectNode("center");
+  selectNode("center", false);
 }
 
 function applyZoom() {
